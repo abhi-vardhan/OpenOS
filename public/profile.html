@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="welcome-message"></h1>
+        <a href="/logout" class="btn">Logout</a>
+        <h2>Your Open Pull Requests</h2>
+        <ul id="pull-requests"></ul>
+        <h2>Your Open Issues</h2>
+        <ul id="issues"></ul>
+        <h2>Total Commits</h2>
+        <p id="total-commits"></p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/user-data');
+                const { pullRequests, issues, totalCommits } = await response.json();
+
+                const pullRequestsList = document.getElementById('pull-requests');
+                const issuesList = document.getElementById('issues');
+                const totalCommitsElem = document.getElementById('total-commits');
+
+                if (pullRequests.length === 0) {
+                    pullRequestsList.innerHTML = '<li>No open pull requests found.</li>';
+                } else {
+                    pullRequests.forEach(pr => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `<a href="${pr.html_url}" target="_blank">${pr.title}</a>`;
+                        pullRequestsList.appendChild(listItem);
+                    });
+                }
+
+                if (issues.length === 0) {
+                    issuesList.innerHTML = '<li>No open issues found.</li>';
+                } else {
+                    issues.forEach(issue => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `<a href="${issue.html_url}" target="_blank">${issue.title}</a>`;
+                        issuesList.appendChild(listItem);
+                    });
+                }
+
+                totalCommitsElem.textContent = totalCommits;
+
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        });
+    </script>
+</body>
+
+</html>
