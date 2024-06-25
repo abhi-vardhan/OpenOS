@@ -19,6 +19,7 @@
         <h2>Total Commits</h2>
         <p id="total-commits"></p>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             try {
@@ -33,8 +34,7 @@
                     pullRequestsList.innerHTML = '<li>No open pull requests found.</li>';
                 } else {
                     pullRequests.forEach(pr => {
-                        const listItem = document.createElement('li');
-                        listItem.innerHTML = `<a href="${pr.html_url}" target="_blank">${pr.title}</a>`;
+                        const listItem = createListItem(pr);
                         pullRequestsList.appendChild(listItem);
                     });
                 }
@@ -43,8 +43,7 @@
                     issuesList.innerHTML = '<li>No open issues found.</li>';
                 } else {
                     issues.forEach(issue => {
-                        const listItem = document.createElement('li');
-                        listItem.innerHTML = `<a href="${issue.html_url}" target="_blank">${issue.title}</a>`;
+                        const listItem = createListItem(issue);
                         issuesList.appendChild(listItem);
                     });
                 }
@@ -55,6 +54,35 @@
                 console.error('Error fetching user data:', error);
             }
         });
+
+        function createListItem(item) {
+            const listItem = document.createElement('li');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = item.id; // Assuming item has a unique identifier
+            checkbox.addEventListener('change', function () {
+                if (this.checked) {
+                    listItem.style.textDecoration = 'line-through';
+                } else {
+                    listItem.style.textDecoration = 'none';
+                }
+            });
+
+            const label = document.createElement('label');
+            label.htmlFor = item.id;
+
+            // Create an anchor (<a>) tag for hyperlinking to the GitHub issue or pull request
+            const link = document.createElement('a');
+            link.href = item.html_url; // Assuming item has an 'html_url' property
+            link.textContent = item.title; // Assuming item has a 'title' property
+
+            label.appendChild(link);
+            listItem.appendChild(checkbox);
+            listItem.appendChild(label);
+
+            return listItem;
+        }
+
     </script>
 </body>
 
