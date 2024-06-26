@@ -9,6 +9,7 @@
 </head>
 
 <body>
+   
     <div class="container">
         <header class="header">
             <div class="user-info">
@@ -34,6 +35,42 @@
 
 
     </div>
+
+    <!-- New try-->
+
+    <div class="popup">
+
+        <div class="close-btn">&times;</div>
+        <img src="assets/github.png" alt="">
+        <h1>Github ID</h1>
+        <p> Enter Your Github Id <input type="text" id="gitid" name="gitid"></p>
+        <button id="gitsubmit" class="gitsubmit">Submit</button>
+        
+    
+    </div>
+
+    <div class="promo">
+        <div class="os-head"><h2>OpenOS</h2></div>
+        <div class="os-des"><p><pre>For the Community  By the Community  To the Community</pre></p></div>
+        <div class="gitty">
+            <p>Star me on Github <img src="assets/stargit.png" alt="star"></p>
+            
+        </div>
+    </div>
+
+    <div >
+        <img src="assets/2020-12-21-11-16-56-unscreen.gif" alt="" id="u1">
+   <h1 id="current-time">12:00</h1>
+    </div>
+
+    
+<div class="dj">
+    <img src="assets/djcat.png" alt="cat" class="catdj">
+    <img src="assets/s1.gif" alt="playing" class="sounddj">
+</div>
+<audio id="audio" src="assets/music.mp3" loop></audio>
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
@@ -96,6 +133,46 @@
 
             return listItem;
         }
+
+
+        /* new try */
+        let time = document.getElementById("current-time");
+
+        setInterval(() =>{
+        let d = new Date();
+        time.innerHTML = d.toLocaleTimeString('en-GB', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+        },1000
+        )
+    
+        let d = new Date();
+        time.innerHTML = d.toLocaleTimeString('en-GB', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+                document.addEventListener('DOMContentLoaded', function() {
+                    var audio = document.getElementById('audio');
+                    var djDiv = document.querySelector('.dj');
+                    var soundDjImg = djDiv.querySelector('.sounddj');
+            
+                    // Start playing the music by default
+                    audio.play();
+            
+                    djDiv.addEventListener('click', function() {
+                        if (audio.paused) {
+                            audio.play();
+                            soundDjImg.src = 'assets/s1.gif';
+                        } else {
+                            audio.pause();
+                            soundDjImg.src = 'assets/s2.png';
+                        }
+                    });
+                });
+
     </script>
 </body>
 
