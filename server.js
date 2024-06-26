@@ -85,6 +85,8 @@ app.get('/user-data', async (req, res) => {
         const totalCommits = commitsResponses.reduce((sum, response) => sum + response.data.length, 0);
 
         const userData = {
+            username: req.user.username,
+            profilePicture: req.user.photos[0].value, // Get the profile picture from the GitHub profile
             pullRequests: pullRequestsResponse.data.items,
             issues: issuesResponse.data.items,
             totalCommits

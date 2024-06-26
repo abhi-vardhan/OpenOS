@@ -10,25 +10,43 @@
 
 <body>
     <div class="container">
-        <h1 id="welcome-message"></h1>
-        <a href="/logout" class="btn">Logout</a>
-        <h2>Your Open Pull Requests</h2>
-        <ul id="pull-requests"></ul>
-        <h2>Your Open Issues</h2>
-        <ul id="issues"></ul>
-        <h2>Total Commits</h2>
-        <p id="total-commits"></p>
+        <header class="header">
+            <div class="user-info">
+                <img id="profile-picture" src="" alt="Profile Picture">
+                <div>
+                    <h3 id="username"></h3>
+                    <p id="total-commits"></p>
+                </div>
+            </div>
+            <a href="/logout" class="btn">Logout</a>
+        </header>
+
+        <div class="content">
+            <div class="column" id="pull-requests-column">
+                <h2>Your Open Pull Requests</h2>
+                <ul id="pull-requests"></ul>
+            </div>
+            <div class="column" id="issues-column">
+                <h2>Your Open Issues</h2>
+                <ul id="issues"></ul>
+            </div>
+        </div>
+
+
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const response = await fetch('/user-data');
-                const { pullRequests, issues, totalCommits } = await response.json();
+                const { username, profilePicture, pullRequests, issues, totalCommits } = await response.json();
+
+                document.getElementById('username').textContent = username;
+                document.getElementById('profile-picture').src = profilePicture;
+                document.getElementById('total-commits').textContent = `Total Commits: ${totalCommits}`;
 
                 const pullRequestsList = document.getElementById('pull-requests');
                 const issuesList = document.getElementById('issues');
-                const totalCommitsElem = document.getElementById('total-commits');
 
                 if (pullRequests.length === 0) {
                     pullRequestsList.innerHTML = '<li>No open pull requests found.</li>';
@@ -47,9 +65,6 @@
                         issuesList.appendChild(listItem);
                     });
                 }
-
-                totalCommitsElem.textContent = totalCommits;
-
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }
@@ -59,7 +74,7 @@
             const listItem = document.createElement('li');
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
-            checkbox.id = item.id; // Assuming item has a unique identifier
+            checkbox.id = item.id;
             checkbox.addEventListener('change', function () {
                 if (this.checked) {
                     listItem.style.textDecoration = 'line-through';
@@ -71,10 +86,9 @@
             const label = document.createElement('label');
             label.htmlFor = item.id;
 
-            // Create an anchor (<a>) tag for hyperlinking to the GitHub issue or pull request
             const link = document.createElement('a');
-            link.href = item.html_url; // Assuming item has an 'html_url' property
-            link.textContent = item.title; // Assuming item has a 'title' property
+            link.href = item.html_url;
+            link.textContent = item.title;
 
             label.appendChild(link);
             listItem.appendChild(checkbox);
@@ -82,7 +96,6 @@
 
             return listItem;
         }
-
     </script>
 </body>
 
