@@ -1,10 +1,16 @@
 {
+  "homepage": "http://abhi-vardhan.github.io/OpenOS",
   "name": "test",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "build": "react-scripts build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eject": "react-scripts eject"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +23,8 @@
     "passport": "^0.7.0",
     "passport-github": "^1.1.0",
     "passport-github2": "^0.1.12"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
