@@ -34,7 +34,7 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 5px;
   width: 100%;
   box-sizing: border-box;
   position: relative;
@@ -55,22 +55,39 @@ body{
 .footer {
   width: 100%;
   text-align: center;
-  padding: 20px;
+  padding: 5px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-top: auto;
 }
 
 .content {
+  position: fixed;
+    top: 90px;
+    left: 5px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex: 1;
   width: 100%;
-  padding: 20px;
+  padding: 2px;
   box-sizing: border-box;
+  font-family: Architects Daughter;
+  font-weight: lighter;
+  font-size: 30px;
 }
 
+
+.butflex{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex: 1;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  
+}
 .column {
 
   box-sizing: border-box;
@@ -84,8 +101,9 @@ body{
   margin-left: auto;
 }
 
-h1, h2,h3 {
+h1, h2,h3,h4,h5,h6 {
   color: #faf9f9;
+  font-weight: lighter;
 }
 
 
@@ -96,6 +114,7 @@ h1, h2,h3 {
   color: #fff;
   background-color: #007bff;
   border: none;
+  font-family: Inter;
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
@@ -108,6 +127,8 @@ h1, h2,h3 {
 ul {
   list-style-type: none;
   padding: 0;
+  font-size: 15px;
+  font-family: Inter;
 }
 
 li {
@@ -223,7 +244,7 @@ li a:hover {
   padding: 5px 5px;
  /* transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;*/
   border: 2px solid #353434;
-  color: wheat;
+  color: white;
   background: #353434;
   display: block;
   height: 36px;
@@ -307,7 +328,8 @@ li a:hover {
     box-shadow: inset 0px 0px 20px 5px rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    width: 450px;
+    width: 380px;
+    height: 220px;
     padding: 20px 30px;
     border-radius: 10px;
     z-index: 1000;

@@ -12,23 +12,38 @@
    
     <div class="container">
         <header class="header">
-            <div class="user-info">
+            <div class="user-info" id="open-popup">
                 <img id="profile-picture" src="" alt="Profile Picture">
                 <div>
                     <h3 id="username"></h3>
                     <p id="total-commits"></p>
                 </div>
             </div>
-            <a href="/logout" class="btn">Logout</a>
+            
         </header>
+
+        <div class="popup">
+
+            <div class="close-btn">&times;</div>
+            <img id="pp" src="" alt="Profile Picture">
+            <h2>Confirm Logout</h2>
+            <p>Are you sure you want to log out?</p>
+            <div class="butflex">
+                <button id="gitsubmit" class="btn">Cancel</button>
+            <a href="/logout" class="btn">Logout</a>
+            </div>
+            
+            
+        
+        </div>
 
         <div class="content">
             <div class="column" id="pull-requests-column">
-                <h2>Your Open Pull Requests</h2>
+                <h5>Your Open Pull Requests   <img src="assets/PR.png" height="25px" width="30px" alt=""></h5>
                 <ul id="pull-requests" style="width: 300px;"></ul>
             </div>
             <div class="column" id="issues-column">
-                <h2>Your Open Issues</h2>
+                <h5><img src="assets/issues.png" height="25px" width="30px" alt="">  Your Open Issues</h5>
                 <ul id="issues" style="width: 300px;"></ul>
             </div>
         </div>
@@ -90,6 +105,20 @@
 
 
     <script>
+
+        document.querySelector("#open-popup").addEventListener("click",function(){
+            document.querySelector(".popup").classList.add("active");
+        });
+    
+        document.querySelector(".popup .close-btn").addEventListener("click",function(){
+            document.querySelector(".popup").classList.remove("active");
+        });
+    
+        document.querySelector(".popup .gitsubmit").addEventListener("click",function(){
+            document.querySelector(".popup").classList.remove("active");
+        });
+    
+
         document.addEventListener('DOMContentLoaded', async () => {
             await fetchUserData();
             initializeTime();
@@ -103,6 +132,7 @@
         
                 document.getElementById('username').textContent = username;
                 document.getElementById('profile-picture').src = profilePicture;
+                document.getElementById('pp').src = profilePicture;
                 document.getElementById('total-commits').textContent = `Total Commits: ${totalCommits}`;
         
                 populateList('pull-requests', openPullRequests, 'No open pull requests found.');
