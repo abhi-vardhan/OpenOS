@@ -25,16 +25,33 @@
         <div class="content">
             <div class="column" id="pull-requests-column">
                 <h2>Your Open Pull Requests</h2>
-                <ul id="pull-requests"></ul>
+                <ul id="pull-requests" style="width: 300px;"></ul>
             </div>
             <div class="column" id="issues-column">
                 <h2>Your Open Issues</h2>
-                <ul id="issues"></ul>
+                <ul id="issues" style="width: 300px;"></ul>
             </div>
         </div>
 
 
     </div>
+
+    <!-- New Text Boxes -->
+    <div class="stats-container">
+        <div class="stat-box">
+            <h3>Commits</h3>
+            <input type="text" id="commits-count" readonly>
+        </div>
+        <div class="stat-box">
+            <h3>PRs</h3>
+            <input type="text" id="prs-count" readonly>
+        </div>
+        <div class="stat-box">
+            <h3>Issues</h3>
+            <input type="text" id="issues-count" readonly>
+        </div>
+    </div>
+
 
     <!-- New try-->
 
@@ -74,6 +91,89 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
+            await fetchUserData();
+            initializeTime();
+            initializeDJ();
+        });
+        
+        async function fetchUserData() {
+            try {
+                const response = await fetch('/user-data');
+                const { username, profilePicture, totalCommits, openPullRequests, openIssues, closedPullRequests, closedIssues } = await response.json();
+        
+                document.getElementById('username').textContent = username;
+                document.getElementById('profile-picture').src = profilePicture;
+                document.getElementById('total-commits').textContent = `Total Commits: ${totalCommits}`;
+        
+                populateList('pull-requests', openPullRequests, 'No open pull requests found.');
+                populateList('issues', openIssues, 'No open issues found.');
+        
+                // Update the new text boxes with counts
+                document.getElementById('commits-count').value = totalCommits;
+                document.getElementById('prs-count').value = openPullRequests.length + closedPullRequests.length;
+                document.getElementById('issues-count').value = openIssues.length + closedIssues.length;
+        
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+        
+        function populateList(elementId, items, emptyMessage) {
+            const listElement = document.getElementById(elementId);
+            if (items.length === 0) {
+                listElement.innerHTML = `<li>${emptyMessage}</li>`;
+            } else {
+                items.forEach(item => {
+                    const listItem = createListItem(item);
+                    listElement.appendChild(listItem);
+                });
+            }
+        }
+
+
+
+/*
+        document.addEventListener('DOMContentLoaded', async () => {
+            await fetchUserData();
+            initializeTime();
+            initializeDJ();
+        });
+        
+        async function fetchUserData() {
+            try {
+                const response = await fetch('/user-data');
+                const { username, profilePicture, pullRequests, issues, totalCommits } = await response.json();
+        
+                document.getElementById('username').textContent = username;
+                document.getElementById('profile-picture').src = profilePicture;
+                document.getElementById('total-commits').textContent = `Total Commits: ${totalCommits}`;
+        
+                populateList('pull-requests', pullRequests, 'No open pull requests found.');
+                populateList('issues', issues, 'No open issues found.');
+        
+                // Update the new text boxes with counts
+                document.getElementById('commits-count').value = totalCommits;
+                document.getElementById('prs-count').value = pullRequests.length;
+                document.getElementById('issues-count').value = issues.length;
+        
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+        
+        function populateList(elementId, items, emptyMessage) {
+            const listElement = document.getElementById(elementId);
+            if (items.length === 0) {
+                listElement.innerHTML = `<li>${emptyMessage}</li>`;
+            } else {
+                items.forEach(item => {
+                    const listItem = createListItem(item);
+                    listElement.appendChild(listItem);
+                });
+            }
+        }
+        /*
+        document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const response = await fetch('/user-data');
                 const { username, profilePicture, pullRequests, issues, totalCommits } = await response.json();
@@ -105,7 +205,7 @@
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }
-        });
+        });*/
 
         function createListItem(item) {
             const listItem = document.createElement('li');

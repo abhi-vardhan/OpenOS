@@ -170,15 +170,66 @@ li a:hover {
 }
 
 #u1{
-    display: block;
-    margin-top: -84vh;
+    margin-top: -4vh;
   margin-left: auto;
   margin-right: auto;
   width: 70%;
-  height: 60%;
-  z-index: -1;
+  height: 100%;
+  z-index: -10;
+
+    position: absolute;
+  top: 4%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+ 
 }
 
+
+.stats-container {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left: 15%;
+  gap: 30px;
+  margin-bottom: 2px; 
+  margin-left: 25%;
+
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  
+  border-radius: 5px;
+  
+}
+
+.stat-box h3 {
+  margin: 0 0 10px 0;
+  color: white;
+  background-color: transparent;
+  font-family: Architects Daughter;
+  font-weight: lighter;
+  font-size: 25px;
+}
+
+.stat-box input {
+  text-align: center;
+  font-size: 14px;
+  border-radius: 16px;
+  line-height: 1.5;
+  padding: 5px 5px;
+ /* transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;*/
+  border: 2px solid #353434;
+  color: wheat;
+  background: #353434;
+  display: block;
+  height: 36px;
+  width: 36px;
+  
+}
 
 
 #current-time{
