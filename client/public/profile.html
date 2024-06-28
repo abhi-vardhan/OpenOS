@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+   
+    <div class="container">
+        <header class="header">
+            <div class="user-info" id="open-popup">
+                <img id="profile-picture" src="" alt="Profile Picture">
+                <div>
+                    <h3 id="username"></h3>
+                    <p id="total-commits"></p>
+                </div>
+            </div>
+            
+        </header>
+
+        <div class="popup">
+
+            <div class="close-btn">&times;</div>
+            <img id="pp" src="" alt="Profile Picture">
+            <h2>Confirm Logout</h2>
+            <p>Are you sure you want to log out?</p>
+            <div class="butflex">
+                <button id="gitsubmit" class="btn">Cancel</button>
+            <a href="/logout" class="btn">Logout</a>
+            </div>
+            
+            
+        
+        </div>
+
+        <div class="content">
+            <div class="column" id="pull-requests-column">
+                <h5>Your Open Pull Requests   <img src="assets/PR.png" height="25px" width="30px" alt=""></h5>
+                <ul id="pull-requests" style="width: 300px;"></ul>
+            </div>
+            <div class="column" id="issues-column">
+                <h5><img src="assets/issues.png" height="25px" width="30px" alt="">  Your Open Issues</h5>
+                <ul id="issues" style="width: 300px;"></ul>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- New Text Boxes -->
+    <div class="stats-container">
+        <div class="stat-box">
+            <h3>Commits</h3>
+            <input type="text" id="commits-count" readonly>
+        </div>
+        <div class="stat-box">
+            <h3>PRs</h3>
+            <input type="text" id="prs-count" readonly>
+        </div>
+        <div class="stat-box">
+            <h3>Issues</h3>
+            <input type="text" id="issues-count" readonly>
+        </div>
+    </div>
+
+
+    <!-- New try-->
+
+    <div class="popup">
+
+        <div class="close-btn">&times;</div>
+        <img src="assets/github.png" alt="">
+        <h1>Github ID</h1>
+        <p> Enter Your Github Id <input type="text" id="gitid" name="gitid"></p>
+        <button id="gitsubmit" class="gitsubmit">Submit</button>
+        
+    
+    </div>
+
+    <div class="promo">
+        <div class="os-head"><h2>OpenOS</h2></div>
+        <div class="os-des"><p><pre>For the Community  By the Community  To the Community</pre></p></div>
+        <div class="gitty">
+            <p>Star me on Github <img src="assets/stargit.png" alt="star"></p>
+            
+        </div>
+    </div>
+
+    <div >
+        <img src="assets/2020-12-21-11-16-56-unscreen.gif" alt="" id="u1">
+   <h1 id="current-time">12:00</h1>
+    </div>
+
+    
+<div class="dj">
+    <img src="assets/djcat.png" alt="cat" class="catdj">
+    <img src="assets/s1.gif" alt="playing" class="sounddj">
+</div>
+<audio id="audio" src="assets/music.mp3" loop></audio>
+
+
+
+    <script>
+
+        document.querySelector("#open-popup").addEventListener("click",function(){
+            document.querySelector(".popup").classList.add("active");
+        });
+    
+        document.querySelector(".popup .close-btn").addEventListener("click",function(){
+            document.querySelector(".popup").classList.remove("active");
+        });
+    
+        document.querySelector(".popup .gitsubmit").addEventListener("click",function(){
+            document.querySelector(".popup").classList.remove("active");
+        });
+    
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await fetchUserData();
+            initializeTime();
+            initializeDJ();
+        });
+        
+        async function fetchUserData() {
+            try {
+                const response = await fetch('/user-data');
+                const { username, profilePicture, totalCommits, openPullRequests, openIssues, closedPullRequests, closedIssues } = await response.json();
+        
+                document.getElementById('username').textContent = username;
+                document.getElementById('profile-picture').src = profilePicture;
+                document.getElementById('pp').src = profilePicture;
+                document.getElementById('total-commits').textContent = `Total Commits: ${totalCommits}`;
+        
+                populateList('pull-requests', openPullRequests, 'No open pull requests found.');
+                populateList('issues', openIssues, 'No open issues found.');
+        
+                // Update the new text boxes with counts
+                document.getElementById('commits-count').value = totalCommits;
+                document.getElementById('prs-count').value = openPullRequests.length + closedPullRequests.length;
+                document.getElementById('issues-count').value = openIssues.length + closedIssues.length;
+        
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+        
+        function populateList(elementId, items, emptyMessage) {
+            const listElement = document.getElementById(elementId);
+            if (items.length === 0) {
+                listElement.innerHTML = `<li>${emptyMessage}</li>`;
+            } else {
+                items.forEach(item => {
+                    const listItem = createListItem(item);
+                    listElement.appendChild(listItem);
+                });
+            }
+        }
+
+
+
+/*
+        document.addEventListener('DOMContentLoaded', async () => {
+            await fetchUserData();
+            initializeTime();
+            initializeDJ();
+        });
+        
+        async function fetchUserData() {
+            try {
+                const response = await fetch('/user-data');
+                const { username, profilePicture, pullRequests, issues, totalCommits } = await response.json();
+        
+                document.getElementById('username').textContent = username;
+                document.getElementById('profile-picture').src = profilePicture;
+                document.getElementById('total-commits').textContent = `Total Commits: ${totalCommits}`;
+        
+                populateList('pull-requests', pullRequests, 'No open pull requests found.');
+                populateList('issues', issues, 'No open issues found.');
+        
+                // Update the new text boxes with counts
+                document.getElementById('commits-count').value = totalCommits;
+                document.getElementById('prs-count').value = pullRequests.length;
+                document.getElementById('issues-count').value = issues.length;
+        
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+        
+        function populateList(elementId, items, emptyMessage) {
+            const listElement = document.getElementById(elementId);
+            if (items.length === 0) {
+                listElement.innerHTML = `<li>${emptyMessage}</li>`;
+            } else {
+                items.forEach(item => {
+                    const listItem = createListItem(item);
+                    listElement.appendChild(listItem);
+                });
+            }
+        }
+        /*
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/user-data');
+                const { username, profilePicture, pullRequests, issues, totalCommits } = await response.json();
+
+                document.getElementById('username').textContent = username;
+                document.getElementById('profile-picture').src = profilePicture;
+                document.getElementById('total-commits').textContent = `Total Commits: ${totalCommits}`;
+
+                const pullRequestsList = document.getElementById('pull-requests');
+                const issuesList = document.getElementById('issues');
+
+                if (pullRequests.length === 0) {
+                    pullRequestsList.innerHTML = '<li>No open pull requests found.</li>';
+                } else {
+                    pullRequests.forEach(pr => {
+                        const listItem = createListItem(pr);
+                        pullRequestsList.appendChild(listItem);
+                    });
+                }
+
+                if (issues.length === 0) {
+                    issuesList.innerHTML = '<li>No open issues found.</li>';
+                } else {
+                    issues.forEach(issue => {
+                        const listItem = createListItem(issue);
+                        issuesList.appendChild(listItem);
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        });*/
+
+        function createListItem(item) {
+            const listItem = document.createElement('li');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = item.id;
+            checkbox.addEventListener('change', function () {
+                if (this.checked) {
+                    listItem.style.textDecoration = 'line-through';
+                } else {
+                    listItem.style.textDecoration = 'none';
+                }
+            });
+
+            const label = document.createElement('label');
+            label.htmlFor = item.id;
+
+            const link = document.createElement('a');
+            link.href = item.html_url;
+            link.textContent = item.title;
+
+            label.appendChild(link);
+            listItem.appendChild(checkbox);
+            listItem.appendChild(label);
+
+            return listItem;
+        }
+
+
+        /* new try */
+        let time = document.getElementById("current-time");
+
+        setInterval(() =>{
+        let d = new Date();
+        time.innerHTML = d.toLocaleTimeString('en-GB', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+        },1000
+        )
+    
+        let d = new Date();
+        time.innerHTML = d.toLocaleTimeString('en-GB', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+                document.addEventListener('DOMContentLoaded', function() {
+                    var audio = document.getElementById('audio');
+                    var djDiv = document.querySelector('.dj');
+                    var soundDjImg = djDiv.querySelector('.sounddj');
+            
+                    // Start playing the music by default
+                    audio.play();
+            
+                    djDiv.addEventListener('click', function() {
+                        if (audio.paused) {
+                            audio.play();
+                            soundDjImg.src = 'assets/s1.gif';
+                        } else {
+                            audio.pause();
+                            soundDjImg.src = 'assets/s2.png';
+                        }
+                    });
+                });
+
+    </script>
+</body>
+
+</html>
