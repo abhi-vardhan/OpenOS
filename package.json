@@ -5,12 +5,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "react-scripts build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "eject": "react-scripts eject"
+    "build": "npm run build --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1"
+    
   },
   "keywords": [],
   "author": "",
@@ -22,7 +24,8 @@
     "express-session": "^1.18.0",
     "passport": "^0.7.0",
     "passport-github": "^1.1.0",
-    "passport-github2": "^0.1.12"
+    "passport-github2": "^0.1.12",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "gh-pages": "^4.0.0"
