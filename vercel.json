@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "public": "public",
     "builds": [
       {
         "src": "public/**/*",
@@ -10,7 +9,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/public/$1"
+        "dest": "/$1"
       }
     ]
   }
