@@ -11,10 +11,104 @@
 
 <body>
     
-    <div class="container">
-        <h1>Login with GitHub</h1>
-        <a href="/auth/github" class="btn">Log in with GitHub</a>
+    <div class="ctrlogin">
+        <div class="logctr">
+            <div class="gitlogf">
+                <img id="loggitb" src="assets/gitoctopus.png" alt="Profile Picture">
+                <h5>Login with GitHub</h5>
+            </div>
+           
+        <a href="/auth/github" class="btn">LogIn</a>
+        </div>
+        
+
+        <div class="content">
+            <div class="column" id="pull-requests-column">
+                <h5>Your Open Pull Requests   <img src="assets/PR.png" height="25px" width="30px" alt=""></h5>
+                <ul id="pull-requests" style="width: 300px;"></ul>
+            </div>
+            <div class="column" id="issues-column">
+                <h5><img src="assets/issues.png" height="25px" width="30px" alt="">  Your Open Issues</h5>
+                <ul id="issues" style="width: 300px;"></ul>
+            </div>
+        </div>
     </div>
+
+    
+    <!-- New try-->
+
+    <div class="popup">
+
+        <div class="close-btn">&times;</div>
+        <img src="assets/github.png" alt="" >
+        <h1>Github ID</h1>
+        <p> Enter Your Github Id <input type="text" id="gitid" name="gitid"></p>
+        <button id="gitsubmit" class="gitsubmit">Submit</button>
+        
+    
+    </div>
+
+    <div class="promo">
+        <div class="os-head"><h2>OpenOS</h2></div>
+        <div class="os-des"><p><pre>For the Community  By the Community  To the Community</pre></p></div>
+        <div class="gitty">
+            <p>Star me on Github <img src="assets/stargit.png" alt="star"></p>
+            
+        </div>
+    </div>
+
+    <div >
+        <img src="assets/Finalbg.svg" alt="" id="cttty">
+        <img src="assets/loomgif 1.gif" alt="" id="u1">
+   <h1 id="current-time">12:00</h1>
+    </div>
+
+
+    
+
+
+
+<script>
+    let time = document.getElementById("current-time");
+
+        setInterval(() =>{
+        let d = new Date();
+        time.innerHTML = d.toLocaleTimeString('en-GB', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+        },1000
+        )
+    
+        let d = new Date();
+        time.innerHTML = d.toLocaleTimeString('en-GB', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+                document.addEventListener('DOMContentLoaded', function() {
+                    var audio = document.getElementById('audio');
+                    var djDiv = document.querySelector('.dj');
+                    var soundDjImg = djDiv.querySelector('.sounddj');
+            
+                    // Start playing the music by default
+                    audio.play();
+            
+                    djDiv.addEventListener('click', function() {
+                        if (audio.paused) {
+                            audio.play();
+                            soundDjImg.src = 'assets/s1.gif';
+                        } else {
+                            audio.pause();
+                            soundDjImg.src = 'assets/s2.png';
+                        }
+                    });
+                });
+
+</script>
+
+
 </body>
 
 </html>

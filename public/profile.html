@@ -22,7 +22,7 @@
             
         </header>
 
-        <div class="popup">
+        <div class="popup ">
 
             <div class="close-btn">&times;</div>
             <img id="pp" src="" alt="Profile Picture">
@@ -51,7 +51,7 @@
 
     </div>
 
-    <!-- New Text Boxes -->
+    <!-- New Text Boxes 
     <div class="stats-container">
         <div class="stat-box">
             <h3>Commits</h3>
@@ -67,7 +67,7 @@
         </div>
     </div>
 
-
+--> 
     <!-- New try-->
 
     <div class="popup">
@@ -91,21 +91,102 @@
     </div>
 
     <div >
-        <img src="assets/2020-12-21-11-16-56-unscreen.gif" alt="" id="u1">
+        <img src="assets/Finalbg.svg" alt="" id="cttty">
+        <img src="assets/loomgif 1.gif" alt="" id="u1">
    <h1 id="current-time">12:00</h1>
     </div>
 
+    <div class="container">
+        <div class="dj" id="spotify">
+            <div id="player">
+                <div class="overlay" id="overlay"></div>
+                <iframe id="spotify-embed" src="" width="300" height="120" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+
+            
+            
+            <button class="button-57" role="button"><span class="text">New Song</span><span><img src="assets/Spotify.png" alt="" height="30px" width="30px" > Spotify</span></button>
+       
+       
+            <!--   <p style="color: antiquewhite;">Hi click on me</p>
+       <img src="assets/djcat.png" alt="cat" class="catdj">
+        <img src="assets/s1.gif" alt="playing" class="sounddj">-->
+    </div>
     
-<div class="dj">
-    <img src="assets/djcat.png" alt="cat" class="catdj">
-    <img src="assets/s1.gif" alt="playing" class="sounddj">
-</div>
-<audio id="audio" src="assets/music.mp3" loop></audio>
+    <div class="popspotify">
+    
+        <div class="close-btn">&times;</div>
+        <img src="assets/Spotify.png" alt="" >
+        <h1>Your Spotify Playlist</h1>
+        <div class="linkdiv"> <input type="text" id="playlist-url" placeholder="Enter Spotify Playlist URL" >
+            <button id="load-playlist" class="spotifysubmit">ᐅ</button></div>
+              
+    
+    </div>
+    </div>
+    
+    <button id="songbut" class="songbut" role="button">ᐁ</button>
+    <button id="Roll" class="roll" role="button"> Roll Back ▲</button>
+
+    <div class="overlay" id="overlay"></div>
+    <iframe id="popup-iframe" class="popup-iframe"></iframe>
 
 
 
     <script>
 
+        document.addEventListener('DOMContentLoaded', () => {
+            const songButton = document.getElementById('songbut');
+            const rollButton = document.getElementById('Roll');
+            const spotifyEmbed = document.getElementById('spotify-embed');
+            const newSongButton = document.querySelector('.button-57');
+    
+            // Set default height on playlist submission
+            document.getElementById('load-playlist').addEventListener('click', () => {
+                const playlistUrl = document.getElementById('playlist-url').value;
+                spotifyEmbed.src = `https://open.spotify.com/embed/playlist/${getPlaylistId(playlistUrl)}`;
+                document.getElementById('player').style.display = 'block';
+                spotifyEmbed.height = 120;
+            });
+    
+            songButton.addEventListener('click', () => {
+                if (spotifyEmbed.src && spotifyEmbed.src !== 'about:blank') {
+                    spotifyEmbed.height = 500;
+                    songButton.style.display = 'none';
+                    newSongButton.style.display = 'none';
+                    rollButton.style.display = 'block';
+                } else {
+                    alert('No active playlist found.');
+                }
+            });
+    
+            rollButton.addEventListener('click', () => {
+                spotifyEmbed.height = 120;
+                songButton.style.display = 'block';
+                newSongButton.style.display = 'block';
+                rollButton.style.display = 'none';
+            });
+    
+            function getPlaylistId(url) {
+                const parts = url.split('/playlist/');
+                return parts.length > 1 ? parts[1].split('?')[0] : '';
+            }
+        });
+       
+        //music
+
+        document.getElementById('load-playlist').addEventListener('click', () => {
+            const playlistUrl = document.getElementById('playlist-url').value;
+            const spotifyEmbed = document.getElementById('spotify-embed');
+            spotifyEmbed.src = `https://open.spotify.com/embed/playlist/${getPlaylistId(playlistUrl)}`;
+            document.getElementById('player').style.display = 'block';
+        });
+        
+        function getPlaylistId(url) {
+            const parts = url.split('/playlist/');
+            return parts.length > 1 ? parts[1].split('?')[0] : '';
+        }
+ 
         document.querySelector("#open-popup").addEventListener("click",function(){
             document.querySelector(".popup").classList.add("active");
         });
@@ -117,7 +198,19 @@
         document.querySelector(".popup .gitsubmit").addEventListener("click",function(){
             document.querySelector(".popup").classList.remove("active");
         });
-    
+
+        document.querySelector("#spotify").addEventListener("click",function(){
+            document.querySelector(".popspotify").classList.add("active");
+        });
+
+        document.querySelector(".popspotify .close-btn").addEventListener("click",function(){
+            document.querySelector(".popspotify").classList.remove("active");
+        });
+
+        document.querySelector(".popspotify .spotifysubmit").addEventListener("click",function(){
+            document.querySelector(".popspotify").classList.remove("active");
+        });
+
 
         document.addEventListener('DOMContentLoaded', async () => {
             await fetchUserData();
@@ -284,6 +377,8 @@
                     minute: '2-digit',
                     hour12: false
                 });
+
+                /*
                 document.addEventListener('DOMContentLoaded', function() {
                     var audio = document.getElementById('audio');
                     var djDiv = document.querySelector('.dj');
@@ -302,7 +397,7 @@
                         }
                     });
                 });
-
+*/
     </script>
 </body>
 

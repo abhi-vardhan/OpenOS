@@ -20,14 +20,20 @@ body {
 
 body{
   background-color: black;
-  background-image: url(assets/Group\ 4.svg);
+  /*background-image: url(assets/Finalbg.svg);*/
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
-  background-size: 130% 90%;
+  background-position: top;
+  background-size: 450px;
+  overflow: hidden;
+  
  
 
   
+}
+
+.gitlogf{
+  display: flex;
 }
 
 .header {
@@ -43,6 +49,7 @@ body{
 .user-info {
   display: flex;
   align-items: center;
+  width: 500px;
 }
 
 .user-info img {
@@ -63,7 +70,7 @@ body{
 
 .content {
   position: fixed;
-    top: 90px;
+    top: 110px;
     left: 5px;
   display: flex;
   justify-content: space-between;
@@ -109,7 +116,15 @@ h1, h2,h3,h4,h5,h6 {
 
 .btn {
   display: inline-block;
+  position: absolute;
+  top: 60px;
+  left: 90px;
   padding: 10px 20px;
+  width: 60px;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
   color: #fff;
   background-color: #007bff;
@@ -190,16 +205,30 @@ li a:hover {
  margin-left: 32%;
 }
 
+#cttty{
+  margin-bottom: 4vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 70%;
+  z-index: 2;
+
+    position: absolute;
+  top: 33%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+}
+
 #u1{
-    margin-top: -4vh;
+    margin-bottom: 5vh;
   margin-left: auto;
   margin-right: auto;
   width: 70%;
   height: 100%;
-  z-index: -10;
+  z-index: -1;
 
     position: absolute;
-  top: 4%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
  
@@ -256,8 +285,8 @@ li a:hover {
 #current-time{
     color: white;
     position: absolute;
-  top: 4%;
-  left: 50%;
+  top: 29%;
+  left: 51%;
   transform: translate(-50%, -50%);
   font-size: 40px;
   font-family: Inter;
@@ -301,14 +330,18 @@ li a:hover {
   position: absolute;
   top: 15px;
   right: 136px;
+  height: 50px;
+  width: 50px;
+  z-index: 0;
 }
 
 .dj .sounddj{
   position: absolute;
   top: 15px;
   right: 46px;
-  height: 30px;
-  width: 80px;
+  height: 10px;
+  width: 10px;
+  z-index: 0;
 }
 
 
@@ -394,4 +427,345 @@ p#open-popup {
     color: #fdfdfd;
     padding: 10px 20px;
     cursor: pointer;
+}
+
+
+
+.popspotify {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    position: fixed;
+    top: -150%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(1.2);
+    opacity: 0;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: inset 0px 0px 20px 5px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    width: 380px;
+    height: 200px;
+    padding: 20px 30px;
+    border-radius: 10px;
+    z-index: 1000;
+    transition:top 0ms ease-in-out 300ms,
+               opacity 300ms ease-in-out 0ms,
+               transform 300ms ease-in-out;
+
+}
+
+.popspotify.active {
+    top: 50%;
+    transform: translate(-50%,-50%) scale(1);
+    opacity: 1;
+    transition:top 0ms ease-in-out 0ms,
+               opacity 300ms ease-in-out 0ms,
+               transform 300ms ease-in-out;
+}
+
+.popspotify .close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 25px;
+    color: #fdfdfd;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.popspotify img{
+  border-radius: 50%;
+  width: 100px;
+  height: 82px;
+  text-align: center;
+
+  padding: 0px;
+  
+}
+
+.popspotify h1 {
+    font-size: 27px;
+    text-align: center;
+    margin-top: 5px;
+    color: #fff;
+}
+
+.popspotify input{
+  
+  font-size: 14px;
+  border-radius: 6px;
+  line-height: 1.5;
+  padding: 5px 10px;
+  transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+  border: 2px solid #dee1e2;
+  color: rgb(14, 14, 16);
+  background: #dee1e2;
+  display: block;
+  height: 26px;
+  width: 300px;
+  :hover {
+      border-color: #3d3a3a;
+  }
+  :focus{
+      border-color: #9147ff;
+      background: #fff;
+  }
+  
+}
+.linkdiv{
+  display: flex;
+  
+}
+
+.popspotify button{
+  
+  cursor: pointer;
+  outline: 0;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  margin-top: 0px;
+  margin-left: 15px;
+  font-size: 1rem;
+  border-radius: 100%;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  color: #ffffff;
+ 
+  background-color: #000;
+  :hover {
+      color: #fff;
+      background-color: #0d6efd;
+      border-color: #0d6efd;
+  }
+
+}
+
+.popspotify p{
+    color: #fdfdfd;
+    font-size: 17px;
+    margin-top: -10px;
+}
+
+p#spotify {
+    position: absolute;
+  top: 8px;
+  left: 16px;
+    font-size: 16px;
+    color: #fdfdfd;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#player {
+  position: absolute;
+  top: 15px;
+  right: 13px;
+}
+
+#spotify-embed{
+  z-index: 1000;
+}
+
+.songbut{
+
+  position: absolute;
+  z-index: 5;
+  top: 100px;
+  right: 46px;
+  margin: 1px;
+  padding: 5px 10px;
+  height: 40px;
+  font-size: 20px;
+  width: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  z-index: 5;
+  border: 0px;
+  font-weight: 700;
+  background-image: linear-gradient(45deg, #000000 0%, #14141d  51%, #2f2399  100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.songbut:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.songbut:active {
+  transform: scale(0.95);
+}
+
+
+.button-57 {
+  display: block;
+  position: absolute;
+  z-index: 5;
+  top: 100px;
+  right: 106px;
+  margin: 1px;
+  overflow: hidden;
+  border: 1px solid #111111;
+  color: #fff;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 15px;
+  padding: 12px 18px 17px;
+  width: 180px;
+  height: 40px;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  background: #000;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-57 span:first-child {
+  position: relative;
+  transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+  z-index: 10;
+}
+
+.button-57 span:last-child {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+  z-index: 100;
+  opacity: 0;
+  top: 70%;
+  left: 50%;
+  transform: translateY(225%) translateX(-50%);
+  height: 14px;
+  line-height: 13px;
+}
+
+.button-57:after {
+  content: "";
+  position: absolute;
+  bottom: -50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  transform-origin: bottom center;
+  transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+  transform: skewY(9.3deg) scaleY(0);
+  z-index: 50;
+}
+
+.button-57:hover:after {
+  transform-origin: bottom center;
+  transform: skewY(9.3deg) scaleY(2);
+}
+
+.button-57:hover span:last-child {
+  transform: translateX(-50%) translateY(-100%);
+  opacity: 1;
+  transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+}
+
+/* CSS for the popup iframe */
+.popup-iframe {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 450px;
+  border: none;
+  z-index: 1000;
+  background: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition:top 0ms ease-in-out 300ms,
+               opacity 300ms ease-in-out 0ms,
+               transform 300ms ease-in-out;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+
+#Roll {
+  display: none;
+}
+
+.roll{
+ display: none;
+  position: absolute;
+  z-index: 5;
+  top: 480px;
+  right: 326px;
+  margin: 1px;
+  padding: 5px 10px;
+  height: 40px;
+  font-size: 15px;
+  width: 150px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  z-index: 5;
+  border: 0px;
+  font-weight: 700;
+  background-image: linear-gradient(45deg, #000000 0%, #14141d  51%, #2f2399  100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.roll:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.roll:active {
+  transform: scale(0.95);
+}
+
+#loggitb{
+  height: 80px;
+  width: 80px;
+  border-radius: 70px;
+ 
 }
