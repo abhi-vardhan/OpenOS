@@ -13,10 +13,10 @@
     "routes": [
       {
         "src": "/",
-        "dest": "/public/index.html"
+        "dest": "/public/$1"
       },
       {
-        "src": "/login",
+        "src": "/auth/github/callback",
         "dest": "/server.js"
       }
     ]
