@@ -28,7 +28,7 @@ passport.deserializeUser((obj, done) => {
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: "https://open-os.vercel.app/auth/github/callback"
+    callbackURL: "https://open-os.vercel.app/api/auth/github/callback"
 },
     (accessToken, refreshToken, profile, done) => {
         profile.accessToken = accessToken;
