@@ -145,6 +145,7 @@ ul {
   padding: 0;
   font-size: 15px;
   font-family: Inter;
+  z-index: 5;
 }
 
 li {
@@ -218,7 +219,7 @@ ul li.completed label a {
   margin-right: auto;
   width: 70%;
   height: 70%;
-  z-index: -2;
+  z-index: 2;
 
     position: absolute;
   top: 33%;
