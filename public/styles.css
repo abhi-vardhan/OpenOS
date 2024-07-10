@@ -225,11 +225,10 @@ ul li.completed label a {
 
 #cttty{
   margin-bottom: 4vh;
-  margin-left: auto;
-  margin-right: auto;
+ 
   width: 70%;
   height: 70%;
-  z-index: 2;
+  z-index: -1;
 
     position: absolute;
   top: 33%;
@@ -243,7 +242,7 @@ ul li.completed label a {
   margin-right: auto;
   width: 70%;
   height: 100%;
-  z-index: -1;
+  z-index: -3;
 
     position: absolute;
   top: 80%;
