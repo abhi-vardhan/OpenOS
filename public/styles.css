@@ -152,7 +152,7 @@ li {
 }
 
 li a {
-  color: #007bff;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -175,7 +175,7 @@ li input[type="checkbox"] {
 }
 
 li a {
-  color: #007bff;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
 }
@@ -183,6 +183,12 @@ li a {
 li a:hover {
   text-decoration: underline;
   color: #0056b3;
+}
+
+ul li.completed label a {
+  color: grey;
+  text-decoration: line-through;
+  text-decoration-color: green;
 }
 
 @media (max-width: 768px) {
@@ -212,7 +218,7 @@ li a:hover {
   margin-right: auto;
   width: 70%;
   height: 70%;
-  z-index: 2;
+  z-index: -2;
 
     position: absolute;
   top: 33%;

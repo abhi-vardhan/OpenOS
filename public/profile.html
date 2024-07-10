@@ -241,6 +241,8 @@
             }
         }
         
+
+        /*
         function populateList(elementId, items, emptyMessage) {
             const listElement = document.getElementById(elementId);
             if (items.length === 0) {
@@ -252,8 +254,24 @@
                 });
             }
         }
-
-
+*/
+function populateList(listId, items) {
+    const list = document.getElementById(listId);
+    items.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+            <input type="checkbox" id="${item.id}" ${item.closed ? 'checked' : ''}>
+            <label for="${item.id}"><a href="${item.url}">${item.title}</a></label>
+        `;
+        if (item.closed) {
+            listItem.classList.add('completed');
+        }
+        list.appendChild(listItem);
+        document.getElementById(item.id).addEventListener('change', (event) => {
+            listItem.classList.toggle('completed', event.target.checked);
+        });
+    });
+}
 
 /*
         document.addEventListener('DOMContentLoaded', async () => {
