@@ -145,51 +145,61 @@ ul {
   padding: 0;
   font-size: 15px;
   font-family: Inter;
-  z-index: 5;
+  z-index: 3;
 }
 
 li {
   margin: 10px 0;
+  z-index: 3;
 }
 
 li a {
   color: #fff;
   text-decoration: none;
+  z-index: 3;
 }
 
 li a:hover {
   text-decoration: underline;
+  z-index: 3;
 }
 
 #total-commits {
   font-size: 18px;
   color: #666;
+  z-index: 3;
 }
 
 li {
   display: flex;
   align-items: center;
+  z-index: 3;
 }
 
 li input[type="checkbox"] {
   margin-right: 10px;
+  z-index: 3;
 }
 
 li a {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
+  z-index: 3;
 }
 
 li a:hover {
   text-decoration: underline;
   color: #0056b3;
+  z-index: 3;
 }
 
 ul li.completed label a {
   color: grey;
   text-decoration: line-through;
   text-decoration-color: green;
+  text-decoration-thickness:2px;
+  z-index: 3;
 }
 
 @media (max-width: 768px) {
