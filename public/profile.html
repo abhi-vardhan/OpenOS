@@ -338,8 +338,11 @@
             checkbox.addEventListener('change', function () {
                 if (this.checked) {
                     listItem.style.textDecoration = 'line-through';
+                    listItem.style.color = 'grey';
+                    listItem.style.textDecorationColor = 'green';
                 } else {
                     listItem.style.textDecoration = 'none';
+                    listItem.style.color = 'white';
                 }
             });
 
