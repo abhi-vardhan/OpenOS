@@ -12,7 +12,8 @@
   ],
   "routes": [
     { "src": "/assets/(.*)", "dest": "/public/assets/$1" },
+    { "src": "/styles.css", "dest": "/public/styles.css" },
     { "src": "/(.*)", "dest": "/server.js" }
-    
+
   ]
 }
