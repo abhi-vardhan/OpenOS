@@ -118,8 +118,8 @@ h1, h2,h3,h4,h5,h6 {
 .btn {
   display: inline-block;
   position: absolute;
-  top: 60px;
-  left: 90px;
+  top: 190px;
+  left: 170px;
   padding: 10px 20px;
   width: 60px;
   align-items: center;
@@ -745,13 +745,13 @@ p#spotify {
  display: none;
   position: absolute;
   z-index: 5;
-  top: 480px;
-  right: 326px;
+  top: 450px;
+  right: 36px;
   margin: 1px;
   padding: 5px 10px;
   height: 40px;
   font-size: 15px;
-  width: 150px;
+  width: 50px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
