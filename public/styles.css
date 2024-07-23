@@ -144,7 +144,9 @@ h1, h2,h3,h4,h5,h6 {
 
 ul {
   list-style-type: none;
-  padding: 0;
+  padding: 5;
+  margin-top: 2px;
+  margin-bottom: 2px;
   font-size: 15px;
   font-family: Inter;
   z-index: 3;
@@ -814,4 +816,70 @@ p#spotify {
   width: 80px;
   border-radius: 70px;
  
+}
+
+#in1{
+
+  position: absolute;
+  bottom: 250px;
+  left: 400px;
+            
+  font-size: 18px;
+  border-radius: 6px;
+  line-height: 1.5;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+  border: 2px solid rgb(81, 85, 87);
+  color: rgb(14, 14, 16);
+  background: #393b3b;
+  display: block;
+  border-radius: 80px;
+  width: 550px;
+  height: 40px;
+  :hover {
+      border-color: #ccc;
+  }
+  :focus{
+      border-color: #9147ff;
+      background: #fff;
+  }
+  
+}
+
+#b1{
+
+  position: absolute;
+  bottom: 252px;
+  left: 920px;
+  
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: bolder;
+  border-radius: 3px;
+  padding-top: 5px;
+  border-radius: 4px;
+  color: #fff;
+  background: transparent;
+  line-height: 1.15;
+  font-size: 24px;
+  border-radius: 100px;
+  height: 50px;
+  width: 50px;
+  word-spacing: 0px;
+  letter-spacing: .0892857143em;
+  text-decoration: none;
+  text-transform: uppercase;
+  
+  border: none;
+  text-align: center;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover {
+      background: rgb(98, 0, 238);
+      box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+  }
+
 }
