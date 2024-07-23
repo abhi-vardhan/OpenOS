@@ -69,6 +69,16 @@
 
 
 <script>
+
+    document.getElementById('login-button').addEventListener('click', function() {
+        const clientId = 'Ov23lijAhzVgNMHu4qKO';
+        const redirectUri = 'https://open-os.vercel.app/auth/github/callback';
+        const scope = 'repo user';
+        const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}`;
+      
+        // Open the GitHub login page in a new window
+        window.open(authUrl, '_blank', 'width=600,height=600');
+      });
     let time = document.getElementById("current-time");
 
         setInterval(() =>{
